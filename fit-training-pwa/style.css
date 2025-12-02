@@ -1,0 +1,361 @@
+:root {
+    --bg-dark: #1a1a1a;
+    --bg-card: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent: #84cc16;
+    /* Lime Green */
+    --accent-dark: #4d7c0f;
+    --danger: #ef4444;
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    max-width: 480px;
+    /* Mobile width cap */
+    background-color: var(--bg-dark);
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes lift {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-20px);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Splash Screen */
+.splash-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.dumbbell-icon {
+    font-size: 4rem;
+    color: var(--text-primary);
+    animation: lift 2s ease-in-out infinite alternate;
+    margin-bottom: 1rem;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease-in 0.5s forwards;
+    opacity: 0;
+}
+
+.auth-container {
+    width: 80%;
+    animation: slideUp 0.8s ease-out 1s forwards;
+    opacity: 0;
+}
+
+/* Buttons & Inputs */
+.btn {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s;
+    margin-bottom: 1rem;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: #000;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--text-secondary);
+    color: var(--text-primary);
+}
+
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.input-label {
+    display: block;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-field:focus {
+    border-color: var(--accent);
+}
+
+/* Auth Toggle */
+.auth-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.auth-toggle span {
+    padding: 0.5rem 1rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    z-index: 1;
+}
+
+.auth-toggle span.active {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.auth-toggle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent);
+    transition: left 0.3s;
+}
+
+/* Dashboard */
+.dashboard {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    padding: 2rem 1.5rem;
+    background: linear-gradient(to bottom, var(--bg-card), var(--bg-dark));
+}
+
+.welcome-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.content-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    padding-bottom: 100px;
+    /* Space for bottom nav */
+}
+
+/* Bottom Nav */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-card);
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+    max-width: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav-item.active {
+    color: var(--accent);
+}
+
+.nav-item i {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.nav-item span {
+    font-size: 0.75rem;
+}
+
+/* Cards */
+.card {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    height: 30px;
+    background-color: #000;
+    /* "dentro preta" */
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 1rem 0;
+    position: relative;
+    border: 1px solid #333;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--accent);
+    /* "ficando verde" */
+    width: 0%;
+    transition: width 0.5s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.progress-text {
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    mix-blend-mode: difference;
+}
+
+/* Chat */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.message {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    max-width: 80%;
+}
+
+.message.sent {
+    background-color: var(--accent);
+    color: #000;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.message.received {
+    background-color: var(--bg-card);
+    align-self: flex-start;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Admin List */
+.student-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+}
+
+.delete-btn {
+    color: var(--danger);
+    cursor: pointer;
+}
